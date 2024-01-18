@@ -1,9 +1,12 @@
+# Created By : Anton
+# Created Date : 18-01-2024
 class TreeNode:
     def __init__(self, key):
         self.key = key
         self.height = 1
         self.left = None
         self.right = None
+
 
 class AVLTree:
     def __init__(self):
@@ -16,7 +19,8 @@ class AVLTree:
 
     def update_height(self, node):
         if node is not None:
-            node.height = 1 + max(self.height(node.left), self.height(node.right))
+            node.height = 1 + max(self.height(node.left),
+                                  self.height(node.right))
 
     def balance_factor(self, node):
         if node is None:
@@ -86,6 +90,7 @@ class AVLTree:
 
     def insert_key(self, key):
         self.root = self.insert(self.root, key)
+
 
 # Example usage:
 avl_tree = AVLTree()

@@ -1,4 +1,7 @@
+# Created By : Anton
+# Created Date : 18-01-2024
 import heapq
+
 
 class Graph:
     def __init__(self):
@@ -37,6 +40,7 @@ class Graph:
         print("Shortest distances from", start + ":")
         for node in visited:
             print(f"{node}: {distances[node]}")
+
 
 # Example usage:
 graph = Graph()
