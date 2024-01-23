@@ -18,7 +18,7 @@ class Graph:
     def dijkstra(self, start):
         priority_queue = [(0, start)]
         visited = set()
-        distances = {node: float('inf') for node in self.graph}
+        distances = {node: float("inf") for node in self.graph}
 
         distances[start] = 0
 
@@ -44,10 +44,10 @@ class Graph:
 
 # Example usage:
 graph = Graph()
-graph.add_edge('A', 'B', 1)
-graph.add_edge('A', 'C', 4)
-graph.add_edge('B', 'C', 2)
-graph.add_edge('B', 'D', 5)
-graph.add_edge('C', 'D', 1)
+graph.add_edge("A", "B", 1)
+graph.add_edge("A", "C", 4)
+graph.add_edge("B", "C", 2)
+graph.add_edge("B", "D", 5)
+graph.add_edge("C", "D", 1)
 
-graph.dijkstra('A')
+graph.dijkstra("A")

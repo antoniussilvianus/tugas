@@ -12,20 +12,23 @@ class AVLTree:
     def __init__(self):
         self.root = None
 
-    def height(self, node):
-        if node is None:
-            return 0
-        return node.height
+    @staticmethod
+    def get_height(node):
+        return 0 if node is None else node.height
 
     def update_height(self, node):
         if node is not None:
-            node.height = 1 + max(self.height(node.left),
-                                  self.height(node.right))
+            node.height = 1 + max(
+                self.get_height(node.left), self.get_height(node.right)
+            )
 
-    def balance_factor(self, node):
-        if node is None:
-            return 0
-        return self.height(node.left) - self.height(node.right)
+    @staticmethod
+    def get_balance(node):
+        return (
+            0
+            if node is None
+            else AVLTree.get_height(node.left) - AVLTree.get_height(node.right)
+        )
 
     def left_rotate(self, z):
         y = z.right
@@ -64,7 +67,7 @@ class AVLTree:
 
         self.update_height(root)
 
-        balance = self.balance_factor(root)
+        balance = self.get_balance(root)
 
         if balance > 1:
             if key < root.left.key:
@@ -83,10 +86,13 @@ class AVLTree:
         return root
 
     def in_order_traversal(self, root):
-        if root:
-            self.in_order_traversal(root.left)
-            print(root.key, end=' ')
-            self.in_order_traversal(root.right)
+        def _in_order_traversal(node):
+            if node:
+                yield from _in_order_traversal(node.left)
+                yield node.key
+                yield from _in_order_traversal(node.right)
+
+        return list(_in_order_traversal(root))
 
     def insert_key(self, key):
         self.root = self.insert(self.root, key)
@@ -100,4 +106,4 @@ for key in keys:
     avl_tree.insert_key(key)
 
 print("In-order traversal of AVL Tree:")
-avl_tree.in_order_traversal(avl_tree.root)
+print(" ".join(map(str, avl_tree.in_order_traversal(avl_tree.root))))
